@@ -48,7 +48,7 @@ extension URLSession: URLSessionProtocol {
 public class Session: URLSessionProtocol {
     public var auth: SessionAuth?
 
-    static let `default`: Session = Session()
+    public static let `default`: Session = Session()
     
     private let session: URLSession
     
