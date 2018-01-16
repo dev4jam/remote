@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 
 /// Operation Protocol
-protocol OperationProtocol {
+public protocol OperationProtocol {
 	associatedtype DataType
 	
 	/// Request

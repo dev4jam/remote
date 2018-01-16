@@ -24,7 +24,7 @@ public enum NetworkError: Error {
     case failedToDecode(String)
     case genericError(String)
 
-    var message: String {
+    public var message: String {
         switch self {
         case .dataIsNotEncodable(let message),
              .stringFailedToDecode(let message),

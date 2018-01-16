@@ -11,7 +11,7 @@ import RxSwift
 
 /// Model Operation, return a response as Decodable Model
 open class ModelOperation<Output: Decodable>: OperationProtocol {
-	typealias DataType = Output
+	public typealias DataType = Output
 	
 	/// Request
 	public var request: RequestProtocol?

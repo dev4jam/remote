@@ -10,24 +10,24 @@ import Foundation
 
 public struct Environment {
     /// Name of the environment
-    var name: String
+    public var name: String
     
     /// Base URL of the environment
-    var url: URL
+    public var url: URL
     
     /// This is the list of common headers which will be part of each Request
     /// Some headers value maybe overwritten by Request's own headers
-    var headers: HeadersDict = [:]
+    public var headers: HeadersDict = [:]
     
     /// Cache policy
-    var cachePolicy: URLRequest.CachePolicy = .reloadIgnoringLocalAndRemoteCacheData
+    public var cachePolicy: URLRequest.CachePolicy = .reloadIgnoringLocalAndRemoteCacheData
     
     /// Initialize a new Environment
     ///
     /// - Parameters:
     ///   - name: name of the environment
     ///   - host: base url
-    init(_ name: String, url: URL) {
+    public init(_ name: String, url: URL) {
         self.name = name
         self.url = url
     }
@@ -38,7 +38,7 @@ public struct Environment {
     ///   - name:    name of the environment
     ///   - host:    base url
     ///   - headers: default http headers
-    init(_ name: String, url: URL, headers: HeadersDict) {
+    public init(_ name: String, url: URL, headers: HeadersDict) {
         self.name    = name
         self.url     = url
         self.headers = headers
@@ -51,13 +51,13 @@ extension Environment: CustomStringConvertible {
     }
 }
 
-extension Environment {
+public extension Environment {
     static var `default`: Environment {
         return EnvironmentType.prod.environment
     }
     
     /// Initialize a new service configuration by looking at paramters
-    static func load() -> Environment {
+    public static func load() -> Environment {
         return EnvironmentType.config.environment
     }
 }
@@ -73,7 +73,7 @@ public enum EnvironmentType: String {
 
     case dev, prod, config
     
-    var environment: Environment {
+    public var environment: Environment {
         var bundleId = ""
         
         if let mainBundleId = Bundle.main.bundleIdentifier {

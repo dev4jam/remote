@@ -33,10 +33,10 @@ public enum RequestMethod: String {
 public struct RequestBody {
     
     /// Data to carry out into the body of the request
-    let data: Any
+    public let data: Any
     
     /// Type of encoding to use
-    let encoding: Encoding
+    public let encoding: Encoding
     
     /// Encoding type
     ///

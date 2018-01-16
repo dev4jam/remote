@@ -10,16 +10,18 @@ import Foundation
 import RealmSwift
 
 @objc
-class CacheObject: Object {
+public class CacheObject: Object {
     func copyToSave() -> CacheObject {
         return self
     }
 }
 
-struct ModelCache {
+public struct ModelCache {
     private let realmDbSchemaVersion: UInt64 = 0
 
-    init(cacheContainerId: String, encryptionKey: Data? = nil, fileManager: FileManager = FileManager.default) {
+    public init(cacheContainerId: String,
+                encryptionKey: Data? = nil,
+                fileManager: FileManager = FileManager.default) {
 
         var config = Realm.Configuration()
         
@@ -43,13 +45,13 @@ struct ModelCache {
         Realm.Configuration.defaultConfiguration = config
     }
     
-    func getContext() -> Realm? {
+    public func getContext() -> Realm? {
         let realm = try? Realm()
         
         return realm
     }
     
-    func save(_ object: CacheObject) {
+    public func save(_ object: CacheObject) {
         let objectToSave = object.copyToSave()
         guard let context = getContext() else { return }
         
@@ -58,7 +60,7 @@ struct ModelCache {
         }
     }
 
-    func save(_ objects: [CacheObject]) {
+    public func save(_ objects: [CacheObject]) {
         let objectsToSave = objects.map { $0.copyToSave() }
         guard let context = getContext() else { return }
 
@@ -69,7 +71,7 @@ struct ModelCache {
         }
     }
     
-    func delete(_ object: CacheObject) {
+    public func delete(_ object: CacheObject) {
         guard let context = getContext() else { return }
 
         try? context.write {
@@ -77,7 +79,7 @@ struct ModelCache {
         }
     }
     
-    func update(_ block: @escaping (() -> Void)) {
+    public func update(_ block: @escaping (() -> Void)) {
         guard let context = getContext() else { return }
 
         try? context.write {
@@ -85,7 +87,7 @@ struct ModelCache {
         }
     }
     
-    func wipe() {
+    public func wipe() {
         guard let context = getContext() else { return }
 
         try? context.write {
@@ -133,7 +135,7 @@ final class CachedServiceResponse: CacheObject {
     }
 }
 
-extension ModelCache {
+public extension ModelCache {
     func loadResponse(for key: String) -> Data? {
         guard let context = getContext() else { return nil }
 

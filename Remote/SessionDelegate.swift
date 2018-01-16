@@ -8,24 +8,24 @@
 
 import Foundation
 
-protocol KeychainServiceProtocol {
+public protocol KeychainServiceProtocol {
     func getCredentials() -> URLCredential?
     func getCertData(for local: Bool) -> Data?
     func validSessionToken() -> String?
     func validBasicAuth() -> String?
 }
 
-class SessionDelegate: NSObject, URLSessionDelegate {
+public class SessionDelegate: NSObject, URLSessionDelegate {
     private var keychain: KeychainServiceProtocol
     
-    required init(keychain service: KeychainServiceProtocol) {
+    public required init(keychain service: KeychainServiceProtocol) {
         keychain = service
     }
     
     // MARK: - URL Session Delegate
-    func urlSession(_ session: URLSession,
-                    didReceive challenge: URLAuthenticationChallenge,
-                    completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+    public func urlSession(_ session: URLSession,
+                           didReceive challenge: URLAuthenticationChallenge,
+                           completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
 
         //check for failure count, cancel authentication and inform the user
         _ = evaluate(trust: challenge.protectionSpace.serverTrust!, for: challenge.protectionSpace.host, local: true)
