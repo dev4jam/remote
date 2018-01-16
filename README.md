@@ -1,6 +1,3 @@
-# remote
-
-
 # Remote
 
 Remote is a highly decoupled/isolated and testable networking layer written in Swift.
@@ -8,19 +5,19 @@ Remote is a highly decoupled/isolated and testable networking layer written in S
 ## Architecture Design
 
 Current version is based upon the network architecture design described in:
+
 - Atlas networking layer: [link](https://medium.com/iquii/atlas-an-unified-approach-to-mobile-development-cycle-networking-layer-a5ccb064181a)
-- Atlas networking layer: [link](https://medium.com/iquii/atlas-an-unified-approach-to-mobile-development-cycle-networking-layer-a5ccb064181a)
-- Network Layers in Swift: [link](http://danielemargutti.com/2017/09/09/network-layers-in-swift-updated/)
+- The complete guide to Network Unit Testing in Swift: [link](https://medium.com/flawless-app-stories/the-complete-guide-to-network-unit-testing-in-swift-db8b3ee2c327)
+- Network Layers in Swift: [link](http://danielemargutti.com/2017/09/10/how-to-write-networking-layer-in-swift-2nd-version/)
+- Ultimate Guide to JSON Parsing with Swift 4: [link](https://benscheirman.com/2017/06/swift-json/)
+- Under the hood of Futures & Promises in Swift [link](https://www.swiftbysundell.com/posts/under-the-hood-of-futures-and-promises-in-swift)
 
 ## Used Libraries
 
-While the theory behind this approach is independent from the tool used, in order to give a complete out-of-box approach I’ve used the following libraries:
+In order to give a complete out-of-box approach I’ve used the following libraries:
 
-* **Networking support**: in this example the Service  implementation uses [Alamofire](https://github.com/Alamofire/Alamofire). Switching to `NSURLSession`  is pretty easy and, in fact, suggested.
-* **Async/Promise support**: I love promises (at least until we’ll get something better with Swift 5) because they are clean, simple and offer a strong error handling mechanism.
-Our networking layer uses [Hydra](https://github.com/malcommac/Hydra), that recently hits the 1.0 milestone.
-* **JSON**: The higher level (near your app) of the architecture offer out-of-box JSON support with `JSONOperation`  class: everything about JSON was offered by [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON), probability the best library for these stuff.
-
+* **Reactive Programming in Swift**: As a callback hell solution [RxSwift](https://github.com/ReactiveX/RxSwift)
+* **Realm**: Caching [realm.io](https://realm.io)
 
 ## Installation
 You can install Swiftline using CocoaPods, carthage and Swift package manager
@@ -29,12 +26,12 @@ You can install Swiftline using CocoaPods, carthage and Swift package manager
 
 ```
 use_frameworks!
-pod 'HermesNetwork'
+pod 'Remote'
 ```
 
 ### Carthage
 ```
-github 'malcommac/HermesNetwork'
+github 'dev4jam/Remote'
 ```
 
 ### Swift Package Manager
@@ -45,7 +42,7 @@ import PackageDescription
 
 let package = Package(name: "YourPackage",
 dependencies: [
-.Package(url: "https://github.com/malcommac/HermesNetwork.git", majorVersion: 0),
+.Package(url: "https://github.com/dev4jam/Remote.git", majorVersion: 0),
 ]
 )
 ```
