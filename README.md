@@ -51,8 +51,8 @@ import PackageDescription
 
 let package = Package(name: "YourPackage",
 dependencies: [
-.Package(url: "https://github.com/dev4jam/Remote.git", majorVersion: 0),
-]
+    .Package(url: "https://github.com/dev4jam/Remote.git", majorVersion: 0),
+  ]
 )
 ```
 
