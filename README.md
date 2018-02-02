@@ -5,6 +5,7 @@
     <img src="http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat" alt="License: MIT" />
     <a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage compatible" /></a>
     <a href="https://twitter.com/dev4jam"><img src="http://img.shields.io/badge/contact-@dev4jam-blue.svg?style=flat"/></a>
+    <a href="https://img.shields.io/twitter/follow/espadrine.svg?style=social&label=Follow"</a>
 </p>
 
 # Remote
