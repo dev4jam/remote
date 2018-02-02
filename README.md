@@ -1,3 +1,12 @@
+<p align="center">
+    <img src="https://img.shields.io/cocoapods/v/Remote.svg?style=flat" />
+    <img src="https://img.shields.io/badge/platform-iOS%2010%2B-blue.svg?style=flat" alt="Platform: iOS 10+" />
+    <a href="https://developer.apple.com/swift"><img src="https://img.shields.io/badge/Swift-4.0-orange.svg?style=flat" alt="Language: Swift 4.0" /></a>
+    <img src="http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat" alt="License: MIT" />
+    <a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage compatible" /></a>
+    <a href="https://twitter.com/dev4jam"><img src="http://img.shields.io/badge/contact-@dev4jam-blue.svg?style=flat"/></a>
+</p>
+
 # Remote
 
 Remote is a highly decoupled/isolated and testable networking layer written in Swift.
