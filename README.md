@@ -12,6 +12,15 @@
 
 Remote is a highly decoupled/isolated and testable networking layer written in Swift.
 
+## Features
+
+- Simple and customizable implementation
+- Easy to integrate and use
+- Clean and Neat implementation (SOLID principles)
+- Based on pure NSURLSession with no obscured code
+- Flexible response parser
+- Swift4 Codable/Decodable protocols oriented
+
 ## Architecture Design
 
 Current version is based upon the network architecture design described in:
