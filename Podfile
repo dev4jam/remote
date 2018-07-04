@@ -6,9 +6,7 @@ target 'Remote' do
   use_frameworks!
 
   # Pods for Remote
-  pod 'RxSwift'
-  pod 'Realm'
-  pod 'RealmSwift'
+  pod 'When'
 
   target 'RemoteTests' do
     inherit! :search_paths

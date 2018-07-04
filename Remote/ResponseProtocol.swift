@@ -24,10 +24,7 @@ public protocol ResponseProtocol {
 
 	/// Return the raw Data instance response of the request
 	var data: Data? { get }
-    
-    // Return true if data is from cache
-    var isCached: Bool { get }
-		
+    		
 	/// Attempt to decode Data received from server and return a String object.
 	/// If it fails it return `nil`.
 	/// Call is not cached but evaluated at each call.
@@ -83,8 +80,6 @@ public class Response: ResponseProtocol {
 	
 	/// Request executed
 	public let request: RequestProtocol
-	
-    public let isCached: Bool
 
 	/// Initialize a new response from Alamofire response
 	///
@@ -98,20 +93,8 @@ public class Response: ResponseProtocol {
 		self.httpResponse = httpResponse
 		self.data = data
 		self.request = request
-        self.isCached = false
-        
-//        print(HTTPURLResponse.localizedString(forStatusCode: httpResponse!.statusCode))
-//        print(toString())
 	}
-    
-    public init(cachedData: Data, request: RequestProtocol) {
-        self.type     = Result.success(200)
-        self.data     = cachedData
-        self.request  = request
-        self.isCached = true
-        self.httpResponse = nil
-    }
-		
+
 	public func toString(_ encoding: String.Encoding? = nil) -> String? {
 		guard let d = self.data else { return nil }
 		return String(data: d, encoding: encoding ?? .utf8)

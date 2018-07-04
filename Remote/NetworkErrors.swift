@@ -17,6 +17,7 @@ public enum NetworkError: Error {
 	case stringFailedToDecode(String)
 	case invalidURL(String)
     case notAuthorised(String)
+    case authorisationExpired(String)
 	case noResponse(String)
 	case missingEndpoint(String)
 	case failedToParseData(String)
@@ -30,6 +31,7 @@ public enum NetworkError: Error {
              .stringFailedToDecode(let message),
              .invalidURL(let message),
              .notAuthorised(let message),
+             .authorisationExpired(let message),
              .noResponse(let message),
              .missingEndpoint(let message),
              .failedToParseData(let message),

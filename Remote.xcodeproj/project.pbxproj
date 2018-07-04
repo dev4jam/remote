@@ -21,11 +21,11 @@
 		0A4C98201FEC69A500059969 /* ServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C980A1FEC69A500059969 /* ServiceProtocol.swift */; };
 		0A4C98221FEC69A500059969 /* RequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C980B1FEC69A500059969 /* RequestProtocol.swift */; };
 		0A4C98241FEC69A500059969 /* ServiceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C980C1FEC69A500059969 /* ServiceConfig.swift */; };
-		0A4C98261FEC69A500059969 /* SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C980D1FEC69A500059969 /* SessionDelegate.swift */; };
-		0A4C98291FEC6C1C00059969 /* ModelCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C98281FEC6C1C00059969 /* ModelCache.swift */; };
 		0A4C98341FEC6E6300059969 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C98311FEC6E6300059969 /* MockURLSession.swift */; };
 		0A4C98361FEC6E6300059969 /* HttpBinService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C98331FEC6E6300059969 /* HttpBinService.swift */; };
 		0A4C98451FEC82ED00059969 /* get.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A4C98441FEC82EC00059969 /* get.json */; };
+		0ADFCA3820ECA351002D86C5 /* Sniffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADFCA3620ECA351002D86C5 /* Sniffer.swift */; };
+		0ADFCA3920ECA351002D86C5 /* BodyDeserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADFCA3720ECA351002D86C5 /* BodyDeserializer.swift */; };
 		3C35A5330D285EC4EFAA2C86 /* Pods_RemoteTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0FEA7D8BB975F4E1228AE05 /* Pods_RemoteTests.framework */; };
 		D71FC8A191B7D8FE1E3F15E7 /* Pods_Remote.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFA6AB018D35922DDC51EC1B /* Pods_Remote.framework */; };
 /* End PBXBuildFile section */
@@ -58,11 +58,11 @@
 		0A4C980A1FEC69A500059969 /* ServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProtocol.swift; sourceTree = "<group>"; };
 		0A4C980B1FEC69A500059969 /* RequestProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestProtocol.swift; sourceTree = "<group>"; };
 		0A4C980C1FEC69A500059969 /* ServiceConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceConfig.swift; sourceTree = "<group>"; };
-		0A4C980D1FEC69A500059969 /* SessionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDelegate.swift; sourceTree = "<group>"; };
-		0A4C98281FEC6C1C00059969 /* ModelCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelCache.swift; sourceTree = "<group>"; };
 		0A4C98311FEC6E6300059969 /* MockURLSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
 		0A4C98331FEC6E6300059969 /* HttpBinService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpBinService.swift; sourceTree = "<group>"; };
 		0A4C98441FEC82EC00059969 /* get.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = get.json; sourceTree = "<group>"; };
+		0ADFCA3620ECA351002D86C5 /* Sniffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sniffer.swift; sourceTree = "<group>"; };
+		0ADFCA3720ECA351002D86C5 /* BodyDeserializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BodyDeserializer.swift; sourceTree = "<group>"; };
 		194E4D5978BC6620571E40B6 /* Pods-Remote.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Remote.release.xcconfig"; path = "Pods/Target Support Files/Pods-Remote/Pods-Remote.release.xcconfig"; sourceTree = "<group>"; };
 		5C5C97F1BDC3A6FDFEC5C157 /* Pods-RemoteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RemoteTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RemoteTests/Pods-RemoteTests.release.xcconfig"; sourceTree = "<group>"; };
 		6E22476E66C7E532F756A366 /* Pods-RemoteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RemoteTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RemoteTests/Pods-RemoteTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -126,8 +126,8 @@
 				0A4C980C1FEC69A500059969 /* ServiceConfig.swift */,
 				0A4C980A1FEC69A500059969 /* ServiceProtocol.swift */,
 				0A4C98061FEC69A400059969 /* Session.swift */,
-				0A4C980D1FEC69A500059969 /* SessionDelegate.swift */,
-				0A4C98281FEC6C1C00059969 /* ModelCache.swift */,
+				0ADFCA3720ECA351002D86C5 /* BodyDeserializer.swift */,
+				0ADFCA3620ECA351002D86C5 /* Sniffer.swift */,
 				0A4C97EB1FEC694B00059969 /* Info.plist */,
 				0A4C97EA1FEC694B00059969 /* Remote.h */,
 			);
@@ -189,8 +189,6 @@
 				0A4C97E31FEC694B00059969 /* Frameworks */,
 				0A4C97E41FEC694B00059969 /* Headers */,
 				0A4C97E51FEC694B00059969 /* Resources */,
-				C6079D21C9BFA743497B48A3 /* [CP] Copy Pods Resources */,
-				0ADE3980200DA72A006CC091 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -210,7 +208,6 @@
 				0A4C97ED1FEC694B00059969 /* Frameworks */,
 				0A4C97EE1FEC694B00059969 /* Resources */,
 				A7A79103BFBF8D44F92E235B /* [CP] Embed Pods Frameworks */,
-				05696EE24041D99214BD9834 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -229,7 +226,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = Dev4Jam;
 				TargetAttributes = {
 					0A4C97E61FEC694B00059969 = {
@@ -280,35 +277,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		05696EE24041D99214BD9834 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RemoteTests/Pods-RemoteTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		0ADE3980200DA72A006CC091 /* SwiftLint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = SwiftLint;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\n  exit 0\nfi";
-		};
 		0DA18E10908A4DF38B4FF0C1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -334,34 +302,15 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-RemoteTests/Pods-RemoteTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
-				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/When/When.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/When.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RemoteTests/Pods-RemoteTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C6079D21C9BFA743497B48A3 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Remote/Pods-Remote-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D34A0F81BDB9BE00F40B5A48 /* [CP] Check Pods Manifest.lock */ = {
@@ -393,10 +342,10 @@
 				0A4C98241FEC69A500059969 /* ServiceConfig.swift in Sources */,
 				0A4C98141FEC69A500059969 /* OperationProtocol.swift in Sources */,
 				0A4C98181FEC69A500059969 /* Session.swift in Sources */,
-				0A4C98261FEC69A500059969 /* SessionDelegate.swift in Sources */,
+				0ADFCA3920ECA351002D86C5 /* BodyDeserializer.swift in Sources */,
 				0A4C98121FEC69A500059969 /* Environment.swift in Sources */,
+				0ADFCA3820ECA351002D86C5 /* Sniffer.swift in Sources */,
 				0A4C981A1FEC69A500059969 /* Request.swift in Sources */,
-				0A4C98291FEC6C1C00059969 /* ModelCache.swift in Sources */,
 				0A4C980E1FEC69A500059969 /* Service.swift in Sources */,
 				0A4C98221FEC69A500059969 /* RequestProtocol.swift in Sources */,
 				0A4C981C1FEC69A500059969 /* Operations.swift in Sources */,
@@ -440,6 +389,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -447,6 +397,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -500,6 +451,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -507,6 +459,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

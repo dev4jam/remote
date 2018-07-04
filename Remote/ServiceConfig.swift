@@ -37,7 +37,12 @@ public final class ServiceConfig: CustomStringConvertible, Equatable {
 	/// Global timeout for any request. If you want, you can override it in Request
 	/// Default value is 15 seconds.
 	public var timeout: TimeInterval = 15.0
-	
+
+    /// Readonly host url
+    public var url: URL {
+        return environment.url
+    }
+
 	/// Initialize a new service configuration
 	///
 	/// - Parameters:

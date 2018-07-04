@@ -2,13 +2,13 @@
 //  HttpBinService.swift
 //  RemoteTests
 //
-//  Created by Dmitry Klimkin on 15/9/17.
+//  Created by Dmitry Klimkin on 22/12/17.
 //  Copyright © 2017 Dev4Jam. All rights reserved.
 //
 
 import Foundation
 import UIKit
-import RxSwift
+import When
 
 @testable import Remote
 
@@ -16,11 +16,11 @@ struct HttpBinResponse: Codable {
     enum ValueType: Int, Codable {
         case valueInt, valueDate, valueString
     }
-    
+
     enum KeyType: String, Codable {
         case keyInt, keyDate, keyString
     }
-    
+
     struct Args: Codable {
         let login:     String?
         let pass:      String?
@@ -32,7 +32,7 @@ struct HttpBinResponse: Codable {
         let valueType: ValueType?
         let hash:      String?
     }
-    
+
     struct Form: Codable {
         let login:     String?
         let pass:      String?
@@ -43,8 +43,10 @@ struct HttpBinResponse: Codable {
         let keyType:   KeyType?
         let valueType: ValueType?
         let hash:      String?
+        let data:      String?
+        let zip:       String?
     }
-    
+
     struct JSON: Codable {
         let login:     String?
         let pass:      String?
@@ -56,14 +58,14 @@ struct HttpBinResponse: Codable {
         let valueType: ValueType?
         let hash:      String?
     }
-    
+
     struct Headers: Codable {
         let userAgent: String
         let contentEncoding: String?
         let contentType: String?
         let accept: String
         let authorization: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case userAgent       = "User-Agent"
             case contentEncoding = "Content-Encoding"
@@ -72,7 +74,7 @@ struct HttpBinResponse: Codable {
             case authorization   = "Authorization"
         }
     }
-    
+
     let args:    Args?
     let form:    Form?
     let json:    JSON?
@@ -81,45 +83,67 @@ struct HttpBinResponse: Codable {
     let url:     String
 }
 
-class GetOperation: ModelOperation<HttpBinResponse> {
+final class GetOperation: ModelOperation<HttpBinResponse> {
     public init(user: String) {
         super.init()
-        
+
         self.request = Request(method: .get, endpoint: "/get", params: nil, fields: ["hash": user], body: nil)
     }
 }
 
-class PostOperation: ModelOperation<HttpBinResponse> {
+final class PostOperation: ModelOperation<HttpBinResponse> {
     public init(user: String, password: String) {
         super.init()
-        
+
         let data = ["login" : user, "pass" : password]
         let body = RequestBody.json(data)
-        
+
         self.request = Request(method: .post, endpoint: "/post", params: nil, fields: ["hash": user], body: body)
     }
 }
 
-class ImageOperation: ModelOperation<UIImage?> {
-    public init(id: String) {
+final class PostMultipartOperation: ModelOperation<HttpBinResponse> {
+    public init(user: String, password: String) {
         super.init()
-        
-        self.request = Request(method: .get, endpoint: "/image/jpeg", params: nil, fields: ["hash": id], body: nil)
-    }
-    
-    override public func execute(in service: ServiceProtocol) -> Observable<UIImage?> {
-        let observable = service.execute(request, cacheKey: nil).map({ response -> UIImage? in
-            guard let data = response.data else {
-                throw NetworkError.missingData("response with no data")
-            }
-            
-            return UIImage(data: data)
-        })
-        
-        return observable
+
+        let boundary = "Boundary-" + UUID().uuidString
+        let file1 = MultipartDataFile(name: "data",
+                                      mimeType: "text/plain",
+                                      data: (user + password).data(using: .utf8)!)
+        let file2 = MultipartDataFile(name: "zip",
+                                      mimeType: "application/x-zip-compressed",
+                                      data: (password + user).data(using: .utf8)!)
+        let data = ["login" : user, "pass" : password]
+        let multipartData = MultipartData(parameters: data, files: [file1, file2])
+        let body = RequestBody.multipart(boundary: boundary, payload: multipartData)
+
+        self.request = Request(method: .post, endpoint: "/post", params: nil, fields: ["hash": user], body: body)
+
+        request?.headers = ["Content-Type": "multipart/form-data; boundary=\(boundary)"]
     }
 }
 
-class HttpBinService: Service {    
+final class ImageOperation: OperationProtocol {
+    public typealias DataType = UIImage?
+
+    /// Request
+    public var request: RequestProtocol?
+
+    public init(id: String) {
+        self.request = Request(method: .get, endpoint: "/image/jpeg", params: nil, fields: ["hash": id], body: nil)
+    }
+
+    public func execute(in service: ServiceProtocol) -> Promise<UIImage?> {
+        return service.execute(request, cacheKey: nil).then { response -> UIImage? in
+            guard let data = response.data else {
+                throw NetworkError.missingData("response with no data")
+            }
+
+            return UIImage(data: data)
+        }
+    }
+}
+
+class HttpBinService: Service {
 }
 

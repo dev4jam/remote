@@ -1,5 +1,5 @@
 //
-//	OperationProtocol.swift
+//  OperationProtocol.swift
 //  Remote
 //
 //  Created by Dmitry Klimkin on 22/8/17.
@@ -7,20 +7,21 @@
 //
 
 import Foundation
-import RxSwift
+import When
 
 /// Operation Protocol
 public protocol OperationProtocol {
-	associatedtype DataType
-	
-	/// Request
-	var request: RequestProtocol? { get set }
-		
-	/// Execute an operation into specified service
-	///
-	/// - Parameters:
-	///   - service: service to use
-	/// - Returns: Promise
-	func execute(in service: ServiceProtocol) -> Observable<DataType>
-	
+    associatedtype T
+
+    /// Request
+    var request: RequestProtocol? { get set }
+
+    /// Execute an operation into specified service
+    ///
+    /// - Parameters:
+    ///   - service: service to use
+    /// - Returns: Promise
+    func execute(in service: ServiceProtocol) -> Promise<T>
+
 }
+

@@ -10,18 +10,18 @@ import Foundation
 
 @testable import Remote
 
-class MockURLTask: URLSessionDataTaskProtocol {
+final class MockURLTask: URLSessionDataTaskProtocol {
     let file: String
     let handler: DataTaskResult
-    
+
     init(file: String, handler: @escaping DataTaskResult) {
         self.file = file
         self.handler = handler
     }
-    
+
     func resume() {
         let bundle = Bundle(for: type(of: self))
-        
+
         guard let path = bundle.path(forResource: file, ofType: "json") else {
             handler(nil, nil, NSError(domain: "Network error: Unable to fine json file", code: 1000, userInfo: nil))
 
@@ -35,16 +35,24 @@ class MockURLTask: URLSessionDataTaskProtocol {
 
             handler(data, response, nil)
         } catch {
-            
+
         }
     }
-    
+
     func cancel() {
-        
+
     }
 }
 
-class MockURLSession: URLSessionProtocol {
+final class MockURLSession: URLSessionProtocol {
+    func enableDebugMode() {
+
+    }
+
+    func updateCredential(to credential: URLCredential, for host: String, port: Int) {
+
+    }
+
     func createTask(with request: URLRequest, completionHandler: @escaping DataTaskResult) -> URLSessionDataTaskProtocol {
         return MockURLTask(file: "get", handler: completionHandler)
     }

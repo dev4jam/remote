@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = "Remote"
-  spec.version      = "1.0.5"
+  spec.version      = "2.0.0"
   spec.license      = {:type => "MIT", :file => "LICENSE", :text => "Copyright 2017 Dev4Jam"}
   spec.summary      = "Remote is a highly decoupled networking layer"
   spec.homepage     = "https://github.com/dev4jam/remote"
@@ -15,8 +15,6 @@ Pod::Spec.new do |spec|
   spec.requires_arc = true
   spec.platform     = :ios, "10.3"
   spec.frameworks   = "Foundation"
-  spec.dependency "RxSwift"
-  spec.dependency "Realm"
-  spec.dependency "RealmSwift"
+  spec.dependency "When"
 end
 
