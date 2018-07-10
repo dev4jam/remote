@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = "Remote"
-  spec.version      = "2.0.0"
+  spec.version      = "2.0.1"
   spec.license      = {:type => "MIT", :file => "LICENSE", :text => "Copyright 2017 Dev4Jam"}
   spec.summary      = "Remote is a highly decoupled networking layer"
   spec.homepage     = "https://github.com/dev4jam/remote"

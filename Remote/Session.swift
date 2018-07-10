@@ -21,7 +21,6 @@ public enum SessionAuth {
 }
 
 public protocol URLSessionProtocol {
-    func enableDebugMode()
     func createTask(with request: URLRequest, completionHandler: @escaping DataTaskResult) -> URLSessionDataTaskProtocol
     func validSessionAuth() -> SessionAuth?
     func updateSessionWith(auth: SessionAuth?)
@@ -29,16 +28,12 @@ public protocol URLSessionProtocol {
 }
 
 extension URLSessionProtocol {
-    public func enableDebugMode() {
-
-    }
-
     public func validSessionAuth() -> SessionAuth? {
         return nil
     }
-
+    
     public func updateSessionWith(auth: SessionAuth?) {
-
+        
     }
 }
 
@@ -48,12 +43,12 @@ extension URLSession: URLSessionProtocol {
     public func createTask(with request: URLRequest, completionHandler: @escaping DataTaskResult) -> URLSessionDataTaskProtocol {
         return dataTask(with: request, completionHandler: completionHandler) as URLSessionDataTaskProtocol
     }
-
+    
     public func updateCredential(to credential: URLCredential, for host: String, port: Int) {
         let protectionSpace = URLProtectionSpace(host: host, port: port, protocol: "https",
                                                  realm: nil,
                                                  authenticationMethod: NSURLAuthenticationMethodClientCertificate)
-
+        
         URLCredentialStorage.shared.set(credential, for: protectionSpace)
         configuration.urlCredentialStorage?.set(credential, for: protectionSpace)
     }
@@ -61,38 +56,41 @@ extension URLSession: URLSessionProtocol {
 
 public class Session: URLSessionProtocol {
     public var auth: SessionAuth?
-
+    
     public static let `default`: Session = Session()
-
+    
     private let session: URLSession
-
-    public func enableDebugMode() {
-        Sniffer.register()
-        Sniffer.enable(in: session.configuration)
-    }
-
+    
     public func createTask(with request: URLRequest, completionHandler: @escaping DataTaskResult) -> URLSessionDataTaskProtocol {
         return session.dataTask(with: request, completionHandler: completionHandler) as URLSessionDataTaskProtocol
     }
-
+    
     public func validSessionAuth() -> SessionAuth? {
         return auth
     }
-
+    
     public func updateSessionWith(auth: SessionAuth?) {
         self.auth = auth
     }
-
-    public init() {
+    
+    public init(enableDebug: Bool = false) {
         session = URLSession.shared
+        
+        if enableDebug {
+            Sniffer.enable(in: session.configuration)
+        }
     }
-
-    public init(with delegate: URLSessionDelegate?) {
+    
+    public init(with delegate: URLSessionDelegate?, enableDebug: Bool = false) {
+        if enableDebug {
+            Sniffer.enable(in: URLSessionConfiguration.default)
+        }
+        
         session = URLSession(configuration: URLSessionConfiguration.default,
                              delegate: delegate,
                              delegateQueue: OperationQueue.main)
     }
-
+    
     public func updateCredential(to credential: URLCredential, for host: String, port: Int) {
         session.updateCredential(to: credential, for: host, port: port)
     }

@@ -24,8 +24,6 @@ final class RemoteTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-
-        session.enableDebugMode()
     }
 
     override func tearDown() {
