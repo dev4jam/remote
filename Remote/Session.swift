@@ -82,11 +82,13 @@ public class Session: URLSessionProtocol {
     }
     
     public init(with delegate: URLSessionDelegate?, enableDebug: Bool = false) {
+        let configuration = URLSessionConfiguration.default
+        
         if enableDebug {
-            Sniffer.enable(in: URLSessionConfiguration.default)
+            Sniffer.enable(in: configuration)
         }
         
-        session = URLSession(configuration: URLSessionConfiguration.default,
+        session = URLSession(configuration: configuration,
                              delegate: delegate,
                              delegateQueue: OperationQueue.main)
     }
